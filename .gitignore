@@ -1,5 +1,12 @@
-*/config/development
-*/logs/log-*.php
-*/logs/!index.html
-*/cache/*
-*/cache/!index.html
+.DS_Store
+
+app/cache/*
+!app/cache/index.html
+!app/cache/.htaccess
+
+app/logs/*
+!app/logs/index.html
+!app/logs/.htaccess
+
+node_modules/*
+temp/*
