@@ -5,7 +5,7 @@ FlatCore是基于Codeigniter的移动应用开发框架，后端功能包括用�
 
 ## 如何使用
 
-	1. clone FlatCore到web目录；
+	1. clone FlatCore到web目录下的flatcore；
 	2. 创建数据库；
 	3. 执行/app/config/flatcore.sql;
 	4. 修改/app/config下的database.php中关于数据库配置的部分
