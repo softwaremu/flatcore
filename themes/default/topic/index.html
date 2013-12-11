@@ -18,13 +18,13 @@
 	</div> -->
 
 	<div class="row">
-		<div><a href="" id="aaa" class="btn btn-primary btn-lg" event-args="id=123" data-toggle="tooltip" title="first tooltip">飞机上大幅度吉林省</a></div>
+		<div><a href="javascript:;" id="aaa" class="btn btn-primary btn-lg" event-args="id=123" data-toggle="tooltip" title="first tooltip">飞机上大幅度吉林省</a></div>
 		
 		<div id="topiclist" class="col-xs-12 col-sm-9">
 			<?php if($list): ?>
 				<?php foreach ($list as $k => $v): ?>
-					<div class="topic" model-node="topic_list" model-args="tid=<?php echo $v['tid']; ?>">
-						<div class="topic-item" arg="<?php echo $v['tid']; ?>">
+					<div class="topic">
+						<div class="topic-item" event-args="tid=<?php echo $v['tid']; ?>">
 							<div class="avatar pull-left">
 								<a href="" title="admin"><img src="<?php echo base_url('public/img/avatar.jpg'); ?>" class="img-rounded" width="50" height="50" /></a>
 							</div>

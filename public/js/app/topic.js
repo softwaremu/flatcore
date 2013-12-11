@@ -1,10 +1,35 @@
-define(function(require, exports, moudles) {
-	require('bootstrap');
-	
+define(function(require, exports) {
+	var M = require('module');
 
 	exports.init = function(context, options){
-		
-		$('#aaa').tooltip('show');
+
+		$('#aaa').click(function() {
+			console.log(this);
+			var args = M.getArgs(this);
+			console.log(args);
+		}).mouseover(function() {
+			var args = M.getArgs(this);
+			console.log(args);
+		});
+
+		$('.topic-item').click(function() {
+			var args = M.getArgs(this);
+			console.log(args);
+			console.log(this);
+			var reply = '<div id="reply_'+ args.id +'" class="topic-reply col-lg-12"><form action="" class="form-horizontal"><div class="form-group"><div class="col-lg-8"><textarea name="" id="" class="form-control" rows="2" placeholder="请您输入评论内容"></textarea></div></div></form></div>';
+
+
+			$(this).unbind();
+			$(this).after(reply);
+			console.log($(this).next())
+			$(this).next().slideDown(function() {
+					// $(this).next().slideUp(function(){
+						// $(this).prev().unbind();
+						// $(this).prev().click(quickReply);
+						// $(this).remove();
+					// });
+			});
+		});
 		/*
 		$('#topiclist .topic-item').click(function() {
 			
