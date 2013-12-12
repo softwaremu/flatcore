@@ -51,10 +51,6 @@ define(function(require, exports, module) {
 		$(obj).popover('show');
 	}
 
-	ui.prototype.add = function() {
-		console.log('add');
-	}
-
 	ui.success = function(options) {
 
 	};
@@ -70,6 +66,8 @@ define(function(require, exports, module) {
 	ui.show = function() {
 
 	};
+
+	console.log(ui);
 
    
 	exports.getArgs = getArgs;

@@ -39,8 +39,6 @@ define(function(require, exports) {
 			core.ui.success();
 		});
 
-		console.log(core.ui);
-
 		// delete
 		$('#topic_delete').click(function() {
 			var args = core.getArgs(this);
