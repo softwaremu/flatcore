@@ -45,6 +45,11 @@ class Topic_model extends MY_Model
 		return $this->db->insert('topic', $data);
 	}
 
+	function update_topic($tid, $data){
+		$this->db->where('tid', $tid);
+  		$this->db->update('topic', $data); 
+		return ($this->db->affected_rows() > 0) ? TRUE : FALSE;
+	}
 	
 
 	function update_user($uid, $data)

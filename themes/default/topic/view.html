@@ -1,4 +1,4 @@
-<?php $this->load->view('header.html');?>
+<?php $this->load->view('/topic/public.html');?>
 <div class="container main">
 	<div class="row">
 		<div class="col-xs-12 col-sm-9">
@@ -18,9 +18,9 @@
 
 				<?php if($this->auth->is_login()){ ?>
 					<div class="share">
-						<a class="btn btn-primary">编辑</a>
-						<a class="btn btn-warning">置顶</a>
-						<a class="btn btn-danger">删除</a>
+						<a href="<?php echo site_url('topic/edit/'.$topic['tid']); ?>" class="btn btn-primary">编辑</a>
+						<a href="javascript:;" id="topic_top" class="btn btn-warning" event-args="tid=<?php echo $topic['tid']; ?>">置顶</a>
+						<a href="javascript:;" id="topic_delete" class="btn btn-danger" event-args="tid=<?php echo $topic['tid']; ?>">删除</a>
 					</div>
 				<?php } ?>
 
@@ -52,7 +52,7 @@
 		<div class="col-xs-12 col-sm-3">
 			<div class="panel panel-default">
 		  		<div class="panel-body">
-			  		<a href="" title="admin"><img src="http://127.0.0.1/flatsns/public/img/avatar.jpg" class="img-rounded" width="50" height="50"></a>
+			  		<a href="" title="admin"><img src="<?php echo site_url('') ?>" class="img-rounded" width="50" height="50"></a>
 			  		<h4>张三丰</h4>
 		  		</div>
 			</div>

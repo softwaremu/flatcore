@@ -1,13 +1,18 @@
-define(function(require, exports) {
-	var uriToObj, getArgs;
+define(function(require, exports, module) {
+	require('bootstrap');
 
+	var uriToObj, getArgs, ui;
+
+	/**
+	 * 获取绑定的参数
+	 *
+	 * @param element DOM元素
+	 */
 	getArgs = function(element) {
     	this.$element = $(element);
     	var args = this.$element.attr('event-args');
     	return uriToObj(args);
     };
-
-    
 
 	/**
 	 * 将uri转换为对象格式
@@ -34,6 +39,39 @@ define(function(require, exports) {
 	    return obj;
 	};
 
+	ui = {};
+
+	ui.confirm = function(obj, options) {
+		$(obj).popover({
+			title: '确认信息',
+			content: 'fjsdlfjld',
+			placement: 'top',
+			trigger: 'click',
+		});
+		$(obj).popover('show');
+	}
+
+	ui.prototype.add = function() {
+		console.log('add');
+	}
+
+	ui.success = function(options) {
+
+	};
+
+	ui.error = function(options) {
+
+	};
+
+	ui.load = function(options) {
+
+	};
+
+	ui.show = function() {
+
+	};
+
    
 	exports.getArgs = getArgs;
+	exports.ui = ui;
 });

@@ -1,0 +1,27 @@
+<?php $this->load->view('/topic/public.html');?>
+<div class="container main">
+	<div class="row">
+		<div class="col-xs-12 col-sm-12">
+			<ol class="breadcrumb">
+			  	<li><a href="<?php echo site_url(); ?>">首页</a></li>
+			  	<li><a href="<?php echo site_url('topic'); ?>">话题</a></li>
+			  	<li class="active">编辑话题</li>
+			</ol>
+			<div class="col-xs-9 col-sm-9 well">
+				<form action="<?php echo site_url('topic/edit/'.$topic['tid']); ?>" method="post" role="form">
+					<legend>编辑话题</legend>
+					<div class="form-group">
+						<label for="title" class="control-label">标题：</label>
+						<input type="text" name="title" class="form-control" value="<?php echo $topic['title']; ?>" placeholder="请您输入标题" />
+					</div>
+					<div class="form-group">
+						<label for="content" class="control-label">内容：</label>
+						<textarea name="content" class="form-control" rows="20" placeholder="请您输入内容"><?php echo $topic['content']; ?></textarea>
+					</div>
+						<button type="submit" id="topic_post" class="btn btn-primary">提交发布</button>
+						<a href="<?php echo site_url('topic'); ?>" class="btn btn-default">取消</a>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,67 +1,50 @@
 define(function(require, exports) {
-	var M = require('module');
-
+	var core = require('core');
+	require('validator');
 	exports.init = function(context, options){
 
 		$('#aaa').click(function() {
-			console.log(this);
-			var args = M.getArgs(this);
-			console.log(args);
+			var args = getArgs(this);
 		}).mouseover(function() {
-			var args = M.getArgs(this);
-			console.log(args);
+			var args = getArgs(this);
 		});
 
-		$('.topic-item').click(function() {
-			var args = M.getArgs(this);
-			console.log(args);
-			console.log(this);
-			var reply = '<div id="reply_'+ args.id +'" class="topic-reply col-lg-12"><form action="" class="form-horizontal"><div class="form-group"><div class="col-lg-8"><textarea name="" id="" class="form-control" rows="2" placeholder="请您输入评论内容"></textarea></div></div></form></div>';
-
-
-			$(this).unbind();
-			$(this).after(reply);
-			console.log($(this).next())
-			$(this).next().slideDown(function() {
-					// $(this).next().slideUp(function(){
-						// $(this).prev().unbind();
-						// $(this).prev().click(quickReply);
-						// $(this).remove();
-					// });
-			});
+		$('.add').bootstrapValidator({
+			fields: {
+				title: {
+					validators: {
+						notEmpty: {
+							message: '您还没有填写标题'
+						}
+					}
+				},
+				content: {
+					validators: {
+						notEmpty: {
+							message: '您还没有填写内容'
+						}
+					}
+				}
+			}
 		});
-		/*
-		$('#topiclist .topic-item').click(function() {
-			
-			$('#topiclist .topic .topic-reply').slideUp(function() {
-				// $(this).prev().removeAttr("style");
-				// $(this).prev().unbind();
-				// $(this).prev().click(quickReply);
-				$(this).remove();
-			});
-			$(this).removeClass('hover');
-			$(this).attr('style', 'background-color: #FFF');
 
-			var arg = $(this).attr('arg');
+		// post
+		$('#topic_post').click(function() {
 
-
-			var reply = '<div id="reply_'+ arg +'" class="topic-reply col-lg-12"><form action="" class="form-horizontal"><div class="form-group"><div class="col-lg-8"><textarea name="" id="" class="form-control" rows="2" placeholder="请您输入评论内容"></textarea></div></div></form></div>';
-
-
-			$(this).unbind();
-			$(this).after(reply);
-
-			$(this).next().slideToggle(function() {
-					// $(this).next().slideUp(function(){
-						// $(this).prev().unbind();
-						// $(this).prev().click(quickReply);
-						// $(this).remove();
-					// });
-			});
-
-			// $(this).parents('.topic').find('.topic-reply').slideToggle('fast');
-			// console.log($(this).parents('.topic').find('.topic-reply'));
 		});
-		*/
+
+		// top
+		$('#topic_top').click(function() {
+			var args = core.getArgs(this);
+			core.ui.success();
+		});
+
+		console.log(core.ui);
+
+		// delete
+		$('#topic_delete').click(function() {
+			var args = core.getArgs(this);
+			core.ui.confirm(this, 'confirm');
+		});
 	}
 });

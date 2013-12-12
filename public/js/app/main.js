@@ -4,7 +4,7 @@ seajs.config({
 		'jquery': 'lib/jquery.js',
 		'bootstrap': 'lib/bootstrap.js',
 		'validator': 'lib/bootstrapValidator.js',
-		'module': 'app/module.js',
+		'core': 'app/core.js',
 	}
 });
 

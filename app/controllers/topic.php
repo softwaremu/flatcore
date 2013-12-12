@@ -36,7 +36,7 @@ class Topic extends Main_Controller {
 	 * 发布话题
 	 *
 	 */
-	public function post()
+	public function add()
 	{
 
 		if(!$this->auth->is_login())
@@ -60,9 +60,8 @@ class Topic extends Main_Controller {
 				);
 				if($this->topic_model->add($data))
 				{
-					//最新贴子tid
+					//获取贴子tid
 					$new_tid = $this->db->insert_id();
-
 
 					redirect('topic/view/'.$new_tid);
 				}
@@ -70,12 +69,49 @@ class Topic extends Main_Controller {
 			else
 			{
 				$data['name'] = 'post';
-				$this->load->view('topic/post.html', $data);
+				$this->load->view('topic/add.html', $data);
+			}
+		}	
+	}
+
+	/**
+	 * 编辑话题
+	 *
+	 * @return void
+	 * @author 
+	 **/
+	public function edit($tid)
+	{
+		if(!$this->auth->is_login())
+		{
+			$this->error('请先登录', site_url('user/login'));
+		}
+		else
+		{
+			if($_POST)
+			{
+				$uid = $this->session->userdata('uid');
+				$data = array(
+					'title' => $this->input->post('title'),
+					'content' => $this->input->post('content'),
+					'updatetime' => time(),
+				);
+				if($this->topic_model->update_topic($tid, $data))
+				{
+					redirect('topic/view/'.$tid);
+				}
+			}
+			else
+			{
+				$data['topic'] = $this->topic_model->get_topic_by_tid($tid);
+				$this->load->view('topic/edit.html', $data);
 			}
 		}
-
-			
 	}
+
+
+
+
 
 	/**
 	 * 话题内容

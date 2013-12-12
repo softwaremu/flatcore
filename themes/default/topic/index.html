@@ -1,9 +1,4 @@
-<?php $this->load->view('header.html');?>
-<script language="javascript">
-	seajs.use('app/main', function(main) {
-		main.load('topic');
-	});
-</script>
+<?php $this->load->view('/topic/public.html');?>
 <div class="container main">
 	<!-- <div class="row">
 		<div class="col-xs-12 col-sm-9">
@@ -18,9 +13,8 @@
 	</div> -->
 
 	<div class="row">
-		<div><a href="javascript:;" id="aaa" class="btn btn-primary btn-lg" event-args="id=123" data-toggle="tooltip" title="first tooltip">飞机上大幅度吉林省</a></div>
-		
 		<div id="topiclist" class="col-xs-12 col-sm-9">
+			<div><a href="<?php echo site_url('topic/add'); ?>" id="aaa" class="btn btn-primary btn-lg" event-args="id=123" data-toggle="tooltip" title="first tooltip">发表话题</a></div>
 			<?php if($list): ?>
 				<?php foreach ($list as $k => $v): ?>
 					<div class="topic">
@@ -29,21 +23,25 @@
 								<a href="" title="admin"><img src="<?php echo base_url('public/img/avatar.jpg'); ?>" class="img-rounded" width="50" height="50" /></a>
 							</div>
 							<div class="info">
-								<h5 class="title">
-									<a href="<?php echo site_url('topic/view/'.$v['tid']); ?>" class=""><?php echo $v['title'] ?></a>
-									<?php if ($v['is_top'] == 1): ?>
-										<span class="badge badge-danger">置顶</span>
-									<?php endif ?>
-								</h5>
+								<div class="title">
+									<div class="pull-right">
+										<a class="badge badge-info"><?php echo $v['replys'] ?></a>
+									</div>
+									<h5 class="title">
+										<a href="<?php echo site_url('topic/view/'.$v['tid']); ?>" class=""><?php echo $v['title'] ?></a>
+										<?php if ($v['is_top'] == 1): ?>
+											<span class="badge badge-danger">置顶</span>
+										<?php endif ?>
+									</h5>
+								</div>
+									
 								<div class="meta">
 									<a href="" class="label label-default">测试版块</a> • 
 									<span>5分钟前</span> • 
 									<a href="">张三丰</a>
 									<span>暂无回复</span>
 								</div>
-								<div class="pull-right">
-									<a class="badge badge-info"><?php echo $v['replys'] ?></a>
-								</div>
+								
 							</div>
 						</div>
 					</div>
