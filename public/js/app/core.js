@@ -67,9 +67,6 @@ define(function(require, exports, module) {
 
 	};
 
-	console.log(ui);
-
-   
 	exports.getArgs = getArgs;
 	exports.ui = ui;
 });

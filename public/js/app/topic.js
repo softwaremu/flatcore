@@ -44,5 +44,20 @@ define(function(require, exports) {
 			var args = core.getArgs(this);
 			core.ui.confirm(this, 'confirm');
 		});
+
+		// add_reply
+		$('#add_reply').click(function() {
+			var args = core.getArgs(this);
+			var content = $('#reply_content').val();
+			$.post(SITE_URL + '/topic/add_reply', {tid: args.tid, uid: UID, content: content}, function(res) {
+				console.log(res);
+				if(res.status == 'success') {
+					// 清空当前发布框
+					$('#reply_content').val('');
+					var html = '<li class="fade in">'+ res.data.content +'</li>';
+					$('.reply .list').append(html);
+				}
+			}, 'json');
+		});
 	}
 });

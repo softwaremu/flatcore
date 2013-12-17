@@ -2,12 +2,15 @@
 
 class Topic extends Main_Controller {
 
+	private $uid;
+
 	public function __construct()
 	{
 		parent::__construct();
 		$this->load->model('topic_model');
+		$this->load->model('reply_model');
 		$this->load->library('pagination');
-
+		$this->uid = $this->session->userdata('uid');
 	}
 
 	/**
@@ -16,8 +19,6 @@ class Topic extends Main_Controller {
 	 */
 	public function index()
 	{
-
-
 		$page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
 		$config['base_url'] = site_url('topic/index/');
 		$config['total_rows'] = $this->topic_model->get_topic_count(); 
@@ -96,7 +97,7 @@ class Topic extends Main_Controller {
 					'content' => $this->input->post('content'),
 					'updatetime' => time(),
 				);
-				if($this->topic_model->update_topic($tid, $data))
+				if($this->topic_model->update($tid, $data))
 				{
 					redirect('topic/view/'.$tid);
 				}
@@ -109,14 +110,12 @@ class Topic extends Main_Controller {
 		}
 	}
 
-
-
-
-
 	/**
 	 * 话题内容
 	 *
-	 */
+	 * @return void
+	 * @author 
+	 **/
 	public function view($tid)
 	{
 		$topic = $this->topic_model->get_topic_by_tid($tid);
@@ -127,9 +126,54 @@ class Topic extends Main_Controller {
 		else
 		{
 			$data['topic'] = $topic;
+			// 获取回复
+			$data['reply'] = $this->reply_model->get_reply_list($tid, 0, 10);
 			$this->load->view('topic/view.html', $data);
 		}
 			
+	}
+
+	/**
+	 * 添加回复
+	 *
+	 * @return void
+	 * @author 
+	 **/
+	public function add_reply()
+	{
+		if(!$this->auth->is_login())
+		{
+			$this->error('请先登录', site_url('user/login'));
+		}
+		else
+		{
+			if($_POST)
+			{
+				$data = array(
+					'tid' => $this->input->post('tid'),
+					'uid' => $this->input->post('uid'),
+					'type' => 'topic',
+					'content' => $this->input->post('content'),
+					'addtime' => time()
+				);
+				$add = $this->reply_model->add($data);
+				if($add)
+				{
+					$result = array(
+						'status' => 'success',
+						'data' => $data
+					);
+				}
+				else
+				{
+					$result = array(
+						'status' => 'error',
+						'data' => ''
+					);
+				}
+				exit(json_encode($result));
+			}
+		}
 	}
 
 }

@@ -3,9 +3,9 @@
 	<div class="row">
 		<div class="col-xs-12 col-sm-9">
 			<ol class="breadcrumb">
-			  	<li><a href="<?php echo site_url(); ?>">首页</a></li>
-			  	<li><a href="<?php echo site_url('topic'); ?>">话题</a></li>
-			  	<li class="active"><?php echo $topic['title']; ?></li>
+				<li><a href="<?php echo site_url(); ?>">首页</a></li>
+				<li><a href="<?php echo site_url('topic'); ?>">话题</a></li>
+				<li class="active"><?php echo $topic['title']; ?></li>
 			</ol>
 			<article>
 				<h3><?php echo $topic['title']; ?></h3>
@@ -26,21 +26,26 @@
 
 				<div class="reply">
 					<ul class="list">
-						
+						<?php foreach ($reply as $key => $value) { ?>
+							<li>
+								<div class="avatar"><a href=""><?php echo $value['uid']; ?></a></div>
+								<?php echo $value['content']; ?>
+							</li>
+						<?php }  ?>
 					</ul>
 					<div class="well post">
-						
 						<?php if($this->auth->is_login()){ ?>
 							<?php echo $user['username']; ?>
-							<form action="<?php echo site_url('topic/post'); ?>" method="post" role="form">
+							<form action="<?php echo site_url('topic/add_reply/'.$topic['tid']); ?>" method="post" role="form">
 								<legend>发布评论</legend>
 								<div class="form-group">
-									<textarea name="content" class="form-control" rows="3" spellcheck="false" placeholder="请您输入内容"></textarea>
+									<textarea name="content" id="reply_content" class="form-control" rows="3" spellcheck="false" placeholder="请您输入内容"></textarea>
 								</div>
-									<a href="javascript:void(0);" class="btn btn-primary">提交发布</a>
+									<a href="javascript:void(0);" id="add_reply" event-args="tid=<?php echo $topic['tid']; ?>" class="btn btn-primary">提交发布</a>
+									<button type="submit">提交</button>
 							</form>
 						<?php }else{ ?>
-							登录后评论
+							<span>您还没登陆，请登录后评论</span>
 							<a href="<?php echo site_url('user/login'); ?>" class="btn btn-primary">登录</a>
 							<a href="<?php echo site_url('user/register'); ?>" class="btn btn-default">注册</a>
 						<?php } ?>
@@ -51,10 +56,10 @@
 
 		<div class="col-xs-12 col-sm-3">
 			<div class="panel panel-default">
-		  		<div class="panel-body">
-			  		<a href="" title="admin"><img src="<?php echo site_url('') ?>" class="img-rounded" width="50" height="50"></a>
-			  		<h4>张三丰</h4>
-		  		</div>
+				<div class="panel-body">
+					<a href="" title="admin"><img src="<?php echo site_url('') ?>" class="img-rounded" width="50" height="50"></a>
+					<h4>张三丰</h4>
+				</div>
 			</div>
 		</div>
 	</div>
