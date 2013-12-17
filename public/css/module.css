@@ -274,3 +274,52 @@ footer {
 .topic-item .meta span {
 	margin-right: 5px;
 }
+
+/*topic*/
+.userinfo {
+	
+}
+.userinfo .avatar {
+	float: left;
+	width: 70px;
+}
+.userinfo .name {
+	padding: 0 0 0 70px;
+	height: 60px;
+}
+
+/*share*/
+.share,
+.content {
+	padding: 10px 0 10px 70px;
+	border-bottom: 1px solid #eee;
+}
+
+
+/*reply*/
+.reply {
+	
+}
+.list {
+	display: block;
+	padding: 15px 0;
+	width: 100%;
+	border-bottom: 1px solid #eee;
+}
+.list .author .avatar {
+	float: left;
+	width: 70px;
+}
+.list .author .replyinfo {
+	margin-bottom: 5px;
+}
+.list .info {
+	margin-left: 70px;
+}
+.list .info span,
+.list .info a {
+	color: #aaa;
+}
+.list .info .time span {
+	margin-right: 10px;
+}

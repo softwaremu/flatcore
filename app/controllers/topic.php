@@ -159,6 +159,7 @@ class Topic extends Main_Controller {
 				$add = $this->reply_model->add($data);
 				if($add)
 				{
+					// 更新回复数
 					$result = array(
 						'status' => 'success',
 						'data' => $data

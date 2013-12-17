@@ -54,10 +54,18 @@ define(function(require, exports) {
 				if(res.status == 'success') {
 					// 清空当前发布框
 					$('#reply_content').val('');
-					var html = '<li class="fade in">'+ res.data.content +'</li>';
-					$('.reply .list').append(html);
+					var html = '<div class="list">' +
+								'<div class="author">' +
+									'<div class="avatar"><a href=""><img src="" class="img-circle" width="50" height="50" alt=""></a></div>' +
+									'<div class="userinfo"><a href="">'+ res.data.uid +'</a><span class="time">'+ res.data.addtime +'</span></div></div>' +
+								'<div class="content">'+ res.data.content +'</div>' +
+							'</div>';
+					$('.reply').append(html);
 				}
 			}, 'json');
 		});
 	}
 });
+
+
+							
